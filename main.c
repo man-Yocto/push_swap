@@ -6,13 +6,13 @@
 /*   By: yocto <yocto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:53:04 by yocto             #+#    #+#             */
-/*   Updated: 2025/10/17 18:06:01 by yocto            ###   ########.fr       */
+/*   Updated: 2025/10/17 18:48:04 by yocto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_duplicates(t_stack *stack)
+int	check_duplicates(t_stack *stack,char **argv, int code)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
@@ -24,11 +24,16 @@ void	check_duplicates(t_stack *stack)
 		while (tmp2)
 		{
 			if (tmp1->num == tmp2->num)
-				error_and_exit("Error\n", stack, NULL);
+			{
+				if (code == 1)
+					free_split(argv);
+				return (1);
+			}
 			tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
 	}
+	return (0);
 }
 
 int	is_sorted(t_stack *stack)
@@ -41,7 +46,7 @@ int	is_sorted(t_stack *stack)
 	}
 	return (1);
 }
-void	make_list_and_sort(int argc, char **argv, t_stack **a, t_stack **b)
+void	make_list_and_sort(int argc, char **argv, t_stack **a, t_stack **b, int code)
 {
 	int		i;
 	long	value;
@@ -61,7 +66,8 @@ void	make_list_and_sort(int argc, char **argv, t_stack **a, t_stack **b)
 		add_back(a, node);
 		i++;
 	}
-	check_duplicates(*a);
+	if (check_duplicates(*a, argv, code))
+		error_and_exit("Error\n", *a, *b);
 	if (is_sorted(*a))
 		return ;
 	go_and_sort(a, b);
@@ -100,11 +106,11 @@ int	main(int argc, char **argv)
 		arg_count = 0;
 		while (args[arg_count])
 			arg_count++;
-		make_list_and_sort(arg_count, args, &a, &b);
+		make_list_and_sort(arg_count, args, &a, &b, 1);
 		free_split(args);
 	}
 	else if (argc > 2)
-		make_list_and_sort(argc - 1, argv + 1, &a, &b);
+		make_list_and_sort(argc - 1, argv + 1, &a, &b, 0);
 	free_stack(a);
 	free_stack(b);
 	return (0);

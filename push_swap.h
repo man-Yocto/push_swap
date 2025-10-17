@@ -35,10 +35,10 @@ void				error_and_exit(const char *message, t_stack *a, t_stack *b);
 int					is_valid_number(const char *str);
 long				ft_atol(const char *str);
 void				make_list_and_sort(int argc, char **argv, t_stack **a,
-						t_stack **b);
+						t_stack **b, int code);
 int					is_sorted(t_stack *stack);
 void				assign_index(t_stack *stack);
-void				check_duplicates(t_stack *stack);
+int					check_duplicates(t_stack *stack, char **argv, int code);
 void				go_and_sort(t_stack **a, t_stack **b);
 int					is_in_first_half(t_stack *stack, int rank);
 void				free_stack(t_stack *stack);
