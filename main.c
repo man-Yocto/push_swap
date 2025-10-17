@@ -6,7 +6,7 @@
 /*   By: yocto <yocto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:53:04 by yocto             #+#    #+#             */
-/*   Updated: 2025/10/16 18:13:19 by yocto            ###   ########.fr       */
+/*   Updated: 2025/10/17 18:06:01 by yocto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_duplicates(t_stack *stack)
 		while (tmp2)
 		{
 			if (tmp1->num == tmp2->num)
-				error_and_exit("Error\n Duplicate number\n", stack, NULL);
+				error_and_exit("Error\n", stack, NULL);
 			tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
@@ -51,13 +51,13 @@ void	make_list_and_sort(int argc, char **argv, t_stack **a, t_stack **b)
 	while (i < argc)
 	{
 		if (!is_valid_number(argv[i]))
-			error_and_exit("Error\n Wrong input\n", *a, *b);
+			error_and_exit("Error\n", *a, *b);
 		value = ft_atol(argv[i]);
 		if (value > INT_MAX || value < INT_MIN)
-			error_and_exit("Error\n You entered a big number\n", *a, *b);
+			error_and_exit("Error\n", *a, *b);
 		node = new_node((int)value);
 		if (!node)
-			error_and_exit("Error\n Memory allocation failed\n", *a, *b);
+			error_and_exit("Error\n", *a, *b);
 		add_back(a, node);
 		i++;
 	}
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 		if (!args || !*args)
 		{
 			free_split(args);
-			error_and_exit("Error\n Memory allocation failed\n", a, b);
+			error_and_exit("Error\n", a, b);
 		}
 		arg_count = 0;
 		while (args[arg_count])

@@ -6,7 +6,7 @@
 /*   By: yocto <yocto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:52:34 by yocto             #+#    #+#             */
-/*   Updated: 2025/10/16 16:35:12 by yocto            ###   ########.fr       */
+/*   Updated: 2025/10/17 18:05:22 by yocto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ long	ft_atol(const char *str)
 	long	result;
 
 	if (!str || !*str)
-		error_and_exit("Error\n Wrong input\n", NULL, NULL);
+		error_and_exit("Error\n", NULL, NULL);
 	sign = 1;
 	result = 0;
 	if (*str == '-' || *str == '+')
